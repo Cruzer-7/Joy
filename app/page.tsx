@@ -36,8 +36,8 @@ const AVATAR_MESSAGES: Record<AvatarMood, string> = {
   shocked: "EH?! You can't be serious!",
   pouty: "Hmph! You don't have a choice, you know!",
   hacker: "Hehe~ Time to hack your heart!",
-  scary: "BOO! ...Did I scare you? Tehehe~",
-  love: "YATTA~! I love you so much! ♡♡♡",
+  scary: "BOO! ...? Tehehe~",
+  love: "YIIIIPPPPPEEEEEE~! I love you so much! ♡♡♡",
 };
 
 export default function ValentinePage() {
@@ -137,14 +137,14 @@ export default function ValentinePage() {
         angle: 60,
         spread: 55,
         origin: { x: 0 },
-        colors: ["#9b59b6", "#8e44ad", "#ec4899", "#f472b6"],
+        colors: ["#9333ea", "#7c3aed", "#a855f7", "#c084fc"],
       });
       confetti({
         particleCount: 3,
         angle: 120,
         spread: 55,
         origin: { x: 1 },
-        colors: ["#9b59b6", "#8e44ad", "#ec4899", "#f472b6"],
+        colors: ["#9333ea", "#7c3aed", "#a855f7", "#c084fc"],
       });
 
       if (Date.now() < end) {
@@ -158,7 +158,7 @@ export default function ValentinePage() {
       particleCount: 100,
       spread: 180,
       origin: { y: 0.6 },
-      colors: ["#ff69b4", "#ff1493", "#9b59b6", "#8e44ad"],
+      colors: ["#9333ea", "#7c3aed", "#a855f7", "#6b21a8"],
       shapes: ["circle"],
       scalar: 1.5,
     });
@@ -283,10 +283,10 @@ export default function ValentinePage() {
     return (
       <div ref={avatarRef} className={`relative ${sizeClasses} ${moodStyles[avatarMood]}`}>
         {/* Glow effect behind avatar */}
-        <div className="absolute inset-0 bg-purple-500/30 rounded-full blur-3xl scale-110" />
+        <div className="absolute inset-0 bg-purple-600/40 rounded-full blur-3xl scale-110" />
 
         {/* Avatar image container */}
-        <div className="relative w-full h-full rounded-full overflow-hidden border-4 border-purple-400/50 bg-purple-900/50">
+        <div className="relative w-full h-full rounded-full overflow-hidden border-4 border-purple-500/60 bg-black/80">
           <Image
             src={`/avatar-${avatarMood}.png`}
             alt="Anime Avatar"
@@ -299,13 +299,25 @@ export default function ValentinePage() {
           />
           {/* Fallback emoji based on mood */}
           <div className="absolute inset-0 flex items-center justify-center text-6xl md:text-8xl">
-            {avatarMood === "happy" && "🥰"}
+            {avatarMood === "happy" && (
+              <img
+                src="https://media.tenor.com/f1xnRxTRxLAAAAAj/bears-with-kisses-bg.gif"
+                alt="Happy bear"
+                className="w-full h-full object-contain"
+              />
+            )}
             {avatarMood === "nervous" && "😰"}
             {avatarMood === "shocked" && "😱"}
             {avatarMood === "pouty" && "😤"}
             {avatarMood === "hacker" && "😈"}
             {avatarMood === "scary" && "👻"}
-            {avatarMood === "love" && "🥹"}
+            {avatarMood === "love" && (
+              <img
+                src="https://media.tenor.com/-nt9Dj8Ei14AAAAM/tap-that.gif"
+                alt="Tap that"
+                className="w-full h-full object-contain"
+              />
+            )}
           </div>
         </div>
 
@@ -371,7 +383,7 @@ export default function ValentinePage() {
   // Success screen
   if (gameState === "success") {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center p-4 md:p-8 bg-gradient-to-br from-[#1a0a1f] via-[#2d1b36] to-[#1a0a1f] relative overflow-hidden">
+      <div className="min-h-screen flex flex-col items-center justify-center p-4 md:p-8 bg-gradient-to-br from-black via-[#0d0015] to-black relative overflow-hidden">
         {/* Background hearts */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           {heartPositions.map((pos, i) => (
@@ -403,8 +415,8 @@ export default function ValentinePage() {
           {/* Cake and Chocolate */}
           <div className="flex flex-row gap-6 items-center justify-center mt-6">
             <div className="relative w-32 h-32 md:w-48 md:h-48 animate-float">
-              <div className="absolute inset-0 bg-purple-500/20 rounded-2xl blur-xl" />
-              <div className="relative w-full h-full rounded-2xl overflow-hidden border-4 border-purple-500/50 bg-purple-900/30 flex items-center justify-center">
+              <div className="absolute inset-0 bg-purple-600/30 rounded-2xl blur-xl" />
+              <div className="relative w-full h-full rounded-2xl overflow-hidden border-4 border-purple-500/60 bg-black/70 flex items-center justify-center">
                 <Image
                   src="/cake.png"
                   alt="Cake"
@@ -419,8 +431,8 @@ export default function ValentinePage() {
             </div>
 
             <div className="relative w-32 h-32 md:w-48 md:h-48 animate-float" style={{ animationDelay: "0.5s" }}>
-              <div className="absolute inset-0 bg-pink-500/20 rounded-2xl blur-xl" />
-              <div className="relative w-full h-full rounded-2xl overflow-hidden border-4 border-pink-500/50 bg-purple-900/30 flex items-center justify-center">
+              <div className="absolute inset-0 bg-purple-600/30 rounded-2xl blur-xl" />
+              <div className="relative w-full h-full rounded-2xl overflow-hidden border-4 border-purple-500/60 bg-black/70 flex items-center justify-center">
                 <Image
                   src="/chocolate.png"
                   alt="Chocolate"
@@ -541,7 +553,7 @@ export default function ValentinePage() {
   return (
     <div
       ref={containerRef}
-      className="min-h-screen flex flex-col items-center justify-center p-4 md:p-8 bg-gradient-to-br from-[#1a0a1f] via-[#2d1b36] to-[#1a0a1f] relative overflow-hidden"
+      className="min-h-screen flex flex-col items-center justify-center p-4 md:p-8 bg-gradient-to-br from-black via-[#0d0015] to-black relative overflow-hidden"
       onMouseMove={handleNoMouseMove}
     >
       {/* Background sparkles */}
@@ -562,8 +574,8 @@ export default function ValentinePage() {
       </div>
 
       {/* Glowing orbs */}
-      <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-purple-600/20 rounded-full blur-3xl" />
-      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-pink-600/10 rounded-full blur-3xl" />
+      <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-purple-700/30 rounded-full blur-3xl" />
+      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-900/20 rounded-full blur-3xl" />
 
       {/* Main content */}
       <div className="text-center z-10 flex flex-col items-center gap-6">
