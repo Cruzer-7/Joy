@@ -1,8 +1,13 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #1a0a1f;
+  --foreground: #f5e6fa;
+  --purple-dark: #2d1b36;
+  --purple-medium: #6b3fa0;
+  --purple-light: #9b59b6;
+  --purple-glow: #a855f7;
+  --pink-accent: #ec4899;
 }
 
 @theme inline {
@@ -12,15 +17,181 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Anime-style animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-15px) rotate(2deg); }
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px var(--purple-glow), 0 0 40px var(--purple-glow); }
+  50% { box-shadow: 0 0 40px var(--purple-glow), 0 0 80px var(--purple-glow); }
+}
+
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  25% { transform: scale(1.15); }
+  50% { transform: scale(1); }
+  75% { transform: scale(1.15); }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px) rotate(-2deg); }
+  75% { transform: translateX(5px) rotate(2deg); }
+}
+
+@keyframes glitch {
+  0% { transform: translate(0); filter: hue-rotate(0deg); }
+  20% { transform: translate(-5px, 5px); filter: hue-rotate(90deg); }
+  40% { transform: translate(-5px, -5px); filter: hue-rotate(180deg); }
+  60% { transform: translate(5px, 5px); filter: hue-rotate(270deg); }
+  80% { transform: translate(5px, -5px); filter: hue-rotate(360deg); }
+  100% { transform: translate(0); filter: hue-rotate(0deg); }
+}
+
+@keyframes scanline {
+  0% { top: 0; }
+  100% { top: 100%; }
+}
+
+@keyframes flicker {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.8; }
+  75% { opacity: 0.9; }
+}
+
+@keyframes sparkle {
+  0%, 100% { opacity: 0; transform: scale(0) rotate(0deg); }
+  50% { opacity: 1; transform: scale(1) rotate(180deg); }
+}
+
+@keyframes speech-bubble-pop {
+  0% { transform: scale(0); opacity: 0; }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes blush {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 0.9; }
+}
+
+@keyframes heart-float {
+  0% { transform: translateY(0) scale(1); opacity: 1; }
+  100% { transform: translateY(-100px) scale(0); opacity: 0; }
+}
+
+@keyframes typing {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-bounce-slow {
+  animation: bounce 2s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.animate-heartbeat {
+  animation: heartbeat 1s ease-in-out infinite;
+}
+
+.animate-shake {
+  animation: shake 0.5s ease-in-out infinite;
+}
+
+.animate-glitch {
+  animation: glitch 0.3s ease-in-out infinite;
+}
+
+.animate-flicker {
+  animation: flicker 0.1s ease-in-out infinite;
+}
+
+.animate-sparkle {
+  animation: sparkle 1.5s ease-in-out infinite;
+}
+
+.animate-speech-pop {
+  animation: speech-bubble-pop 0.3s ease-out forwards;
+}
+
+.animate-blush {
+  animation: blush 2s ease-in-out infinite;
+}
+
+.animate-typing {
+  animation: typing 0.8s ease-in-out infinite;
+}
+
+.scanline::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: rgba(0, 255, 0, 0.3);
+  animation: scanline 2s linear infinite;
+}
+
+/* Speech bubble styles */
+.speech-bubble {
+  position: relative;
+  background: linear-gradient(135deg, #ffffff 0%, #f0e6ff 100%);
+  border-radius: 20px;
+  padding: 20px 28px;
+  color: #2d1b36;
+  box-shadow: 0 4px 20px rgba(168, 85, 247, 0.3);
+}
+
+.speech-bubble::after {
+  content: '';
+  position: absolute;
+  bottom: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 15px 15px 0;
+  border-style: solid;
+  border-color: #f0e6ff transparent transparent transparent;
+}
+
+/* Anime panel border */
+.anime-panel {
+  border: 4px solid #a855f7;
+  border-radius: 16px;
+  background: linear-gradient(180deg, rgba(45, 27, 54, 0.9) 0%, rgba(26, 10, 31, 0.95) 100%);
+  box-shadow:
+    0 0 30px rgba(168, 85, 247, 0.3),
+    inset 0 0 60px rgba(168, 85, 247, 0.1);
+}
+
+/* Sparkle effect */
+.sparkle {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: radial-gradient(circle, #fff 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
 }
